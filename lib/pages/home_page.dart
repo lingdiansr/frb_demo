@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  bool _isCollapsed = false;
 
   final List<MenuOption> _topOptions = [
     MenuOption(Icons.home, 'home'),
@@ -31,6 +32,8 @@ class _HomePageState extends State<HomePage> {
             selectedIndex: _selectedIndex,
             onItemSelected: (index) => setState(() => _selectedIndex = index),
             onSettingsTap: () => _openSettings(context),
+            isCollapsed: _isCollapsed,
+            onToggle: (collapsed) => setState(() => _isCollapsed = collapsed),
           ),
           const VerticalDivider(width: 1),
           Expanded(

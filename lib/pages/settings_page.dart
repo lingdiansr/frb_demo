@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:frb_demo/models/theme_notifier.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPageWrapper extends StatelessWidget {
   final BuildContext parentContext;
@@ -43,6 +45,27 @@ class SettingsPage extends StatelessWidget {
                   parentContext.setLocale(newLocale);
                 }
               },
+            ),
+            Text('theme'.tr(), style: const TextStyle(fontSize: 16)),
+            DropdownButton<ThemeMode>(
+              value: context
+                  .watch<ThemeNotifier>()
+                  .mode, // 自己存到 SharedPreferences 或状态管理
+              items: [
+                DropdownMenuItem(
+                  value: ThemeMode.system,
+                  child: Text('themeModeSystem'.tr()),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.light,
+                  child: Text('themeModeLight'.tr()),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.dark,
+                  child: Text('themeModeDark'.tr()),
+                ),
+              ],
+              onChanged: (mode) => context.read<ThemeNotifier>().setMode(mode!),
             ),
           ],
         ),

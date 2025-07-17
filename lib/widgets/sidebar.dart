@@ -3,34 +3,31 @@ import 'package:easy_localization/easy_localization.dart';
 
 import '../models/menu_option.dart';
 
-class Sidebar extends StatefulWidget {
+class Sidebar extends StatelessWidget {
   final List<MenuOption> topOptions;
   final int selectedIndex;
   final ValueChanged<int> onItemSelected;
   final VoidCallback onSettingsTap;
+  final bool isCollapsed;
+  final ValueChanged<bool> onToggle;
 
   const Sidebar({
     required this.topOptions,
     required this.selectedIndex,
     required this.onItemSelected,
     required this.onSettingsTap,
+    required this.isCollapsed,
+    required this.onToggle,
     super.key,
   });
-
-  @override
-  State<Sidebar> createState() => _SidebarState();
-}
-
-class _SidebarState extends State<Sidebar> {
-  bool _isCollapsed = false;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      width: _isCollapsed ? 80 : 200,
+      width: isCollapsed ? 80 : 200,
       height: double.infinity,
-      color: Colors.blueGrey[50],
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Column(
         children: [
           _buildHeader(),
@@ -44,7 +41,7 @@ class _SidebarState extends State<Sidebar> {
   Widget _buildHeader() {
     return SizedBox(
       height: 60,
-      child: _isCollapsed
+      child: isCollapsed
           ? const Center(child: Icon(Icons.menu, size: 30))
           : Padding(
               padding: const EdgeInsets.only(left: 16),
@@ -65,8 +62,8 @@ class _SidebarState extends State<Sidebar> {
   Widget _buildMenuItems() {
     return SingleChildScrollView(
       child: Column(
-        children: widget.topOptions.map((option) {
-          final index = widget.topOptions.indexOf(option);
+        children: topOptions.map((option) {
+          final index = topOptions.indexOf(option);
           return _buildMenuItem(option, index);
         }).toList(),
       ),
@@ -75,18 +72,18 @@ class _SidebarState extends State<Sidebar> {
 
   Widget _buildMenuItem(MenuOption option, int index) {
     final label = option.label.tr();
-    return _isCollapsed
+    return isCollapsed
         ? Center(
             child: IconButton(
               icon: Icon(option.icon),
-              onPressed: () => widget.onItemSelected(index),
+              onPressed: () => onItemSelected(index),
             ),
           )
         : ListTile(
             leading: Icon(option.icon),
             title: Text(label),
-            selected: widget.selectedIndex == index,
-            onTap: () => widget.onItemSelected(index),
+            selected: selectedIndex == index,
+            onTap: () => onItemSelected(index),
           );
   }
 
@@ -94,19 +91,19 @@ class _SidebarState extends State<Sidebar> {
     return Column(
       children: [
         const Divider(),
-        _isCollapsed
+        isCollapsed
             ? Center(
                 child: IconButton(
                   icon: const Icon(Icons.settings),
-                  onPressed: widget.onSettingsTap,
+                  onPressed: onSettingsTap,
                 ),
               )
             : ListTile(
                 leading: const Icon(Icons.settings),
                 title: Text('settings'.tr()),
-                onTap: widget.onSettingsTap,
+                onTap: onSettingsTap,
               ),
-        _isCollapsed
+        isCollapsed
             ? Center(
                 child: IconButton(
                   icon: const Icon(Icons.chevron_left),
@@ -123,6 +120,7 @@ class _SidebarState extends State<Sidebar> {
   }
 
   void _toggleCollapse() {
-    setState(() => _isCollapsed = !_isCollapsed);
+    // setState(() => isCollapsed = !isCollapsed);
+    onToggle(!isCollapsed);
   }
 }
