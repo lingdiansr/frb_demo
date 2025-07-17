@@ -4,14 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:frb_demo/models/theme_notifier.dart';
 import 'package:frb_demo/src/rust/frb_generated.dart';
 import 'package:provider/provider.dart';
+import 'package:window_manager/window_manager.dart';
 
 import 'app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await windowManager.ensureInitialized();
   await RustLib.init();
-
+  WindowOptions windowOptions = WindowOptions(
+    size: Size(800, 600),
+    center: true,
+    // backgroundColor: Colors.transparent,
+    skipTaskbar: false,
+    titleBarStyle: TitleBarStyle.normal,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+    await windowManager.setTitle('mainWindowTitle'.tr());
+  });
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeNotifier(),

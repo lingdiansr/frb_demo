@@ -41,6 +41,7 @@ dependencies:
   easy_localization: 3.0.7+1
   easy_localization_yaml: 0.1.2
   provider: ^6.1.5
+  window_manager: ^0.5.1
 
 dev_dependencies:
   flutter_test:

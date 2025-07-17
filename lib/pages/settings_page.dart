@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 
 class SettingsPageWrapper extends StatelessWidget {
   final BuildContext parentContext;
-  const SettingsPageWrapper({Key? key, required this.parentContext})
-    : super(key: key);
+  const SettingsPageWrapper({super.key, required this.parentContext});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class SettingsPageWrapper extends StatelessWidget {
 
 class SettingsPage extends StatelessWidget {
   final BuildContext parentContext;
-  const SettingsPage({Key? key, required this.parentContext}) : super(key: key);
+  const SettingsPage({super.key, required this.parentContext});
 
   @override
   Widget build(BuildContext context) {
