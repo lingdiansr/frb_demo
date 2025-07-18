@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:frb_demo/main.dart';
+import 'package:frb_demo/app.dart';
 import 'package:frb_demo/src/rust/frb_generated.dart';
 import 'package:integration_test/integration_test.dart';
 
