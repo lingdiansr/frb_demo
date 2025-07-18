@@ -9,3 +9,8 @@ categories:
   - Utility
 generic_name: Demo Application
 startup_notify: true
+include:
+  - build/linux/x64/release/bundle
+exclude:
+  - "**/.git"
+  - "**/node_modules"
