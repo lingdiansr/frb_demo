@@ -54,7 +54,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: linux-package
-        path: frb-demo-linux-x64.tar.gz
+        path: build/frb-demo-linux-x64.tar.gz
 
   build-windows:
     name: Build Windows
@@ -98,7 +98,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: windows-package
-        path: frb-demo-windows-x64.zip
+        path: build/frb-demo-windows-x64.zip
 
   build-macos:
     name: Build macOS
@@ -155,7 +155,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: macos-${{ matrix.suffix }}-package
-        path: frb-demo-macos-${{ matrix.suffix }}.tar.gz
+        path: build/frb-demo-macos-${{ matrix.suffix }}.tar.gz
 
   create-release:
     name: Create Release
