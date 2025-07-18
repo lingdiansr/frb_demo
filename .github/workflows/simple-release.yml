@@ -171,14 +171,38 @@ jobs:
       with:
         path: releases
     
+    - name: Download Linux package
+      uses: actions/download-artifact@v4
+      with:
+        name: linux-package
+        path: ./releases
+    
+    - name: Download Windows package
+      uses: actions/download-artifact@v4
+      with:
+        name: windows-package
+        path: ./releases
+    
+    - name: Download macOS x64 package
+      uses: actions/download-artifact@v4
+      with:
+        name: macos-x64-package
+        path: ./releases
+    
+    - name: Download macOS arm64 package
+      uses: actions/download-artifact@v4
+      with:
+        name: macos-arm64-package
+        path: ./releases
+    
     - name: Create Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          releases/**/*/*
+          releases/*
         draft: false
         prerelease: false
         generate_release_notes: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
