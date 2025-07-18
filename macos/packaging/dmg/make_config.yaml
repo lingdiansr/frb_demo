@@ -1,0 +1,5 @@
+display_name: FRB Demo
+package_name: frb-demo
+icon: assets/icon.png
+bundle_id: com.example.frb_demo
+category: public.app-category.utilities

@@ -9,17 +9,19 @@
 - **功能**: 在Windows、Linux、macOS上测试和构建应用
 - **输出**: 构建状态检查
 
-### 2. Release工作流 (.github/workflows/release.yml)
+### 2. FastForge Release工作流 (.github/workflows/fastforge-release.yml)
 - **触发条件**: 推送v*标签或手动触发
-- **功能**: 构建各平台的安装包
+- **功能**: 使用FastForge构建各平台安装包
+- **工具**: [FastForge](https://fastforge.dev/) - 专业的Flutter应用打包工具
 - **输出**: 
-  - **Windows**: `frb-demo-windows-x64-setup.exe` (Inno Setup安装程序)
-  - **Linux**: 
-    - `frb-demo-linux-x86_64.AppImage` (AppImage格式)
-    - `frb-demo-linux-amd64.deb` (DEB包格式)
-  - **macOS**: 
-    - `frb-demo-macos-x64.dmg` (Intel芯片DMG)
-    - `frb-demo-macos-arm64.dmg` (Apple Silicon DMG)
+  - **Windows**: `.exe`安装程序
+  - **Linux**: `.deb`和`.AppImage`格式
+  - **macOS**: `.dmg`磁盘映像
+
+### 3. FastForge配置
+- **配置文件**: `distribute_options.yaml`
+- **构建命令**: `flutter_distributor package`
+- **输出目录**: `dist/`
 
 ## 使用方法
 
@@ -59,7 +61,38 @@ flutter build macos --release
 ### Flutter版本
 使用`.fvmrc`文件指定Flutter版本，GitHub Actions会自动读取此配置。
 
-## 注意事项
+## FastForge配置说明
+
+### 必需文件结构
+项目已创建以下FastForge配置文件：
+
+```
+linux/packaging/deb/make_config.yaml      # DEB包配置
+linux/packaging/appimage/make_config.yaml # AppImage配置
+windows/packaging/exe/make_config.yaml    # Windows安装程序配置
+macos/packaging/dmg/make_config.yaml      # macOS DMG配置
+```
+
+### 图标配置
+- 创建 `assets/icon.png` (1024x1024像素) 作为应用图标
+- 图标将用于所有平台的安装包
+
+### 本地测试
+```bash
+# 安装flutter_distributor
+dart pub global activate flutter_distributor
+
+# 构建特定平台
+flutter_distributor package --platform linux --targets deb
+flutter_distributor package --platform windows --targets exe
+flutter_distributor package --platform macos --targets dmg
+
+# 一键构建所有平台
+./scripts/fastforge_build.sh
+```
+
+### 注意事项
 - 确保所有平台相关的依赖已正确安装
 - 首次构建可能需要较长时间下载依赖
 - 构建产物会作为GitHub Release的附件自动上传
+- 所有安装包将输出到 `dist/` 目录

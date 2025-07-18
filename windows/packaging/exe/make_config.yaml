@@ -1,0 +1,11 @@
+display_name: FRB Demo
+package_name: frb-demo
+publisher:
+  name: Your Name
+  url: https://example.com
+identifier: com.example.frb_demo
+create_desktop_icon: true
+install_dir_name: FRB Demo
+locales:
+  - en
+  - zh

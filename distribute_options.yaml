@@ -1,0 +1,74 @@
+# FastForge 配置文件
+# 参考: https://fastforge.dev/
+
+output: dist/
+releases:
+  - name: dev
+    jobs:
+      - name: release-dev
+        package:
+          platform: linux
+          target: deb
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev
+        package:
+          platform: linux
+          target: appimage
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev
+        package:
+          platform: windows
+          target: exe
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev
+        package:
+          platform: macos
+          target: dmg
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+
+  - name: prod
+    jobs:
+      - name: release-prod
+        package:
+          platform: linux
+          target: deb
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod
+        package:
+          platform: linux
+          target: appimage
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod
+        package:
+          platform: windows
+          target: exe
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod
+        package:
+          platform: macos
+          target: dmg
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0

@@ -1,0 +1,11 @@
+display_name: FRB Demo
+package_name: frb-demo
+icon: assets/icon.png
+keywords:
+  - flutter
+  - rust
+  - demo
+categories:
+  - Utility
+generic_name: Demo Application
+startup_notify: true

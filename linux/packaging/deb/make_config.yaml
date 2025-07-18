@@ -1,0 +1,22 @@
+display_name: FRB Demo
+package_name: frb-demo
+maintainer:
+  name: Your Name
+  email: your.email@example.com
+priority: optional
+section: utils
+installed_size: 0
+essential: false
+icon: assets/icon.png
+dependencies:
+  - libgtk-3-0
+  - libblkid1
+  - liblzma5
+keywords:
+  - flutter
+  - rust
+  - demo
+generic_name: Demo Application
+categories:
+  - Utility
+startup_notify: true
