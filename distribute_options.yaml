@@ -5,7 +5,7 @@ output: dist/
 releases:
   - name: dev
     jobs:
-      - name: release-dev
+      - name: release-dev-linux-x64
         package:
           platform: linux
           target: deb
@@ -13,7 +13,15 @@ releases:
             target: lib/main.dart
             build-number: 1
             build-name: 1.0.0
-      - name: release-dev
+      - name: release-dev-linux-arm64
+        package:
+          platform: linux
+          target: deb
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev-linux-x64-appimage
         package:
           platform: linux
           target: appimage
@@ -21,7 +29,15 @@ releases:
             target: lib/main.dart
             build-number: 1
             build-name: 1.0.0
-      - name: release-dev
+      - name: release-dev-linux-arm64-appimage
+        package:
+          platform: linux
+          target: appimage
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev-windows-x64
         package:
           platform: windows
           target: exe
@@ -29,7 +45,23 @@ releases:
             target: lib/main.dart
             build-number: 1
             build-name: 1.0.0
-      - name: release-dev
+      - name: release-dev-windows-arm64
+        package:
+          platform: windows
+          target: exe
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev-macos-x64
+        package:
+          platform: macos
+          target: dmg
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-dev-macos-arm64
         package:
           platform: macos
           target: dmg
@@ -40,7 +72,7 @@ releases:
 
   - name: prod
     jobs:
-      - name: release-prod
+      - name: release-prod-linux-x64
         package:
           platform: linux
           target: deb
@@ -48,7 +80,15 @@ releases:
             target: lib/main.dart
             build-number: 1
             build-name: 1.0.0
-      - name: release-prod
+      - name: release-prod-linux-arm64
+        package:
+          platform: linux
+          target: deb
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod-linux-x64-appimage
         package:
           platform: linux
           target: appimage
@@ -56,7 +96,15 @@ releases:
             target: lib/main.dart
             build-number: 1
             build-name: 1.0.0
-      - name: release-prod
+      - name: release-prod-linux-arm64-appimage
+        package:
+          platform: linux
+          target: appimage
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod-windows-x64
         package:
           platform: windows
           target: exe
@@ -64,7 +112,23 @@ releases:
             target: lib/main.dart
             build-number: 1
             build-name: 1.0.0
-      - name: release-prod
+      - name: release-prod-windows-arm64
+        package:
+          platform: windows
+          target: exe
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod-macos-x64
+        package:
+          platform: macos
+          target: dmg
+          build_args:
+            target: lib/main.dart
+            build-number: 1
+            build-name: 1.0.0
+      - name: release-prod-macos-arm64
         package:
           platform: macos
           target: dmg

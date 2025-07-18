@@ -42,19 +42,25 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
     
-    - name: Build Linux application
-      run: flutter build linux --release
+    - name: Install Flutter Distributor
+      run: dart pub global activate flutter_distributor
     
-    - name: Create Linux package
+    - name: Build Linux packages with FastForge
       run: |
-        cd build/linux/x64/release/bundle
-        tar -czf ../../../../frb-demo-linux-x64.tar.gz *
+        export PATH="$PATH":"$HOME/.pub-cache/bin"
+        flutter_distributor package --platform linux --targets deb,appimage --skip-clean
     
-    - name: Upload Linux package
+    - name: Upload Linux DEB package
       uses: actions/upload-artifact@v4
       with:
-        name: linux-package
-        path: frb-demo-linux-x64.tar.gz
+        name: linux-deb-package
+        path: dist/**/*linux.deb
+    
+    - name: Upload Linux AppImage package
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-appimage-package
+        path: dist/**/*linux.AppImage
 
   build-windows:
     name: Build Windows
@@ -86,19 +92,19 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
     
-    - name: Build Windows application
-      run: flutter build windows --release
+    - name: Install Flutter Distributor
+      run: dart pub global activate flutter_distributor
     
-    - name: Create Windows package
+    - name: Build Windows packages with FastForge
       run: |
-        cd build/windows/x64/runner/Release
-        7z a ../../../../frb-demo-windows-x64.zip *
+        $env:PATH += ";$env:USERPROFILE\.pub-cache\bin"
+        flutter_distributor package --platform windows --targets exe --skip-clean
     
-    - name: Upload Windows package
+    - name: Upload Windows EXE package
       uses: actions/upload-artifact@v4
       with:
-        name: windows-package
-        path: frb-demo-windows-x64.zip
+        name: windows-exe-package
+        path: dist/**/*windows.exe
 
   build-macos:
     name: Build macOS
@@ -143,19 +149,19 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
     
-    - name: Build macOS application
-      run: flutter build macos --release
+    - name: Install Flutter Distributor
+      run: dart pub global activate flutter_distributor
     
-    - name: Create macOS package
+    - name: Build macOS packages with FastForge
       run: |
-        cd build/macos/Build/Products/Release
-        tar -czf ../../../../frb-demo-macos-${{ matrix.suffix }}.tar.gz *.app
+        export PATH="$PATH":"$HOME/.pub-cache/bin"
+        flutter_distributor package --platform macos --targets dmg --skip-clean
     
-    - name: Upload macOS package
+    - name: Upload macOS DMG package
       uses: actions/upload-artifact@v4
       with:
-        name: macos-${{ matrix.suffix }}-package
-        path: frb-demo-macos-${{ matrix.suffix }}.tar.gz
+        name: macos-${{ matrix.suffix }}-dmg-package
+        path: dist/**/*macos.dmg
 
   create-release:
     name: Create Release
@@ -166,28 +172,34 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Download Linux package
+    - name: Download Linux DEB package
       uses: actions/download-artifact@v4
       with:
-        name: linux-package
+        name: linux-deb-package
         path: ./releases
     
-    - name: Download Windows package
+    - name: Download Linux AppImage package
       uses: actions/download-artifact@v4
       with:
-        name: windows-package
+        name: linux-appimage-package
         path: ./releases
     
-    - name: Download macOS x64 package
+    - name: Download Windows EXE package
       uses: actions/download-artifact@v4
       with:
-        name: macos-x64-package
+        name: windows-exe-package
         path: ./releases
     
-    - name: Download macOS arm64 package
+    - name: Download macOS x64 DMG package
       uses: actions/download-artifact@v4
       with:
-        name: macos-arm64-package
+        name: macos-x64-dmg-package
+        path: ./releases
+    
+    - name: Download macOS arm64 DMG package
+      uses: actions/download-artifact@v4
+      with:
+        name: macos-arm64-dmg-package
         path: ./releases
     
     - name: Create Release
