@@ -51,7 +51,7 @@ jobs:
         tar -czf ../../../../frb-demo-linux-x64.tar.gz *
     
     - name: Upload Linux package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-package
         path: build/frb-demo-linux-x64.tar.gz
@@ -95,7 +95,7 @@ jobs:
         7z a ../../../../frb-demo-windows-x64.zip *
     
     - name: Upload Windows package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-package
         path: build/frb-demo-windows-x64.zip
@@ -152,7 +152,7 @@ jobs:
         tar -czf ../../../../frb-demo-macos-${{ matrix.suffix }}.tar.gz *.app
     
     - name: Upload macOS package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos-${{ matrix.suffix }}-package
         path: build/frb-demo-macos-${{ matrix.suffix }}.tar.gz
