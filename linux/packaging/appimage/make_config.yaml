@@ -1,16 +1,43 @@
-display_name: FRB Demo
-package_name: frb-demo
-icon: assets/icon.png
+display_name: Hello World
+
+icon: assets/logo.png
+
 keywords:
-  - flutter
-  - rust
-  - demo
+  - hello
+  - world
+
+generic_name: Cool Application
+
+# supported mime types that can be opened using this application
+# supported_mime_type:
+#   - audio/mpeg
+
+metainfo: linux/packaging/appdata.xml
+
+actions:
+  - name: Say Hi
+    label: say-hi
+    arguments:
+      - --say
+      - hi
+  - name: Say Bye
+    label: say-bye
+    arguments:
+      - --say
+      - bye
+
 categories:
-  - Utility
-generic_name: Demo Application
+  - Development
+
 startup_notify: true
-include:
-  - build/linux/x64/release/bundle
-exclude:
-  - "**/.git"
-  - "**/node_modules"
+
+# You can specify the shared libraries that you want to bundle with your app
+#
+# fastforge automatically detects the shared libraries that your app
+# depends on, but you can also specify them manually here.
+# 
+# The following example shows how to bundle the libcurl library with your app.
+#
+# include:
+#   - libcurl.so.4
+include: []

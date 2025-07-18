@@ -1,4 +1,4 @@
-# the name used to display in the OS. Specifically desktop
+﻿# the name used to display in the OS. Specifically desktop
 # entry name
 display_name: Frb Demo
 
@@ -9,18 +9,6 @@ package_name: frb_demo
 maintainer:
   name: lingdianshiren
   email: ldsrwu@foxmail.com
-
-# co_authors:
-#   - name: Kingkor Roy Tirtho
-#     email: krtirtho@gmail.com
-
-# enum options -> required, important, standard, optional, extra
-# refer: https://www.debian.org/doc/debian-policy/ch-archive.html#s-priorities
-priority: optional
-
-# enum options: admin, cli-mono, comm, database, debug, devel, doc, editors, education, electronics, embedded, fonts, games, gnome, gnu-r, gnustep, graphics, hamradio, haskell, httpd, interpreters, introspection, java, javascript, kde, kernel, libdevel, libs, lisp, localization, mail, math, metapackages, misc, net, news, ocaml, oldlibs, otherosfs, perl, php, python, ruby, rust, science, shells, sound, tasks, tex, text, utils, vcs, video, web, x11, xfce, zope
-# refer: https://www.debian.org/doc/debian-policy/ch-archive.html#s-subsections
-section: x11
 
 # the size of binary in kilobyte
 installed_size: 6604
@@ -72,8 +60,6 @@ installed_size: 6604
 # replaces:
 #   - spotify
 
-essential: false
-
 postinstall_scripts:
   - echo `Installed my awesome app`
 postuninstall_scripts:
@@ -105,7 +91,8 @@ metainfo: linux/packaging/appdata.xml
 # the categories the application belong to
 # refer: https://specifications.freedesktop.org/menu-spec/latest/
 categories:
-  - Development
+  - Music
+  - Media
 
 # let OS know if the application can be run on start_up. If it's false
 # the application will deny to the OS if it was added as a start_up

@@ -1,138 +1,100 @@
-# FastForge 配置文件
-# 参考: https://fastforge.dev/
-
 output: dist/
+variables:
+  # FLUTTER_ROOT: ~/fvm/versions/3.16.5
+  # PGYER_API_KEY: your api key
 releases:
-  - name: dev
+  - name: profile
     jobs:
-      - name: release-dev-linux-x64
-        package:
-          platform: linux
-          target: deb
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-linux-arm64
-        package:
-          platform: linux
-          target: deb
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-linux-x64-appimage
+      - name: linux-appimage
         package:
           platform: linux
           target: appimage
           build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-linux-arm64-appimage
+            profile: true
+      - name: linux-deb
         package:
           platform: linux
-          target: appimage
+          target: deb
           build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-windows-x64
+            profile: true
+      - name: linux-pacman
         package:
-          platform: windows
-          target: exe
+          platform: linux
+          target: pacman
           build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-windows-arm64
+            profile: true
+      - name: linux-zip
         package:
-          platform: windows
-          target: exe
+          platform: linux
+          target: zip
           build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-macos-x64
+            profile: true
+      - name: macos-dmg
         package:
           platform: macos
           target: dmg
           build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-dev-macos-arm64
+            profile: true
+      - name: macos-zip
         package:
           platform: macos
-          target: dmg
+          target: zip
           build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-
-  - name: prod
+            profile: true
+      - name: windows-exe
+        package:
+          platform: windows
+          target: exe
+          build_args:
+            profile: true
+      # msix does not support profile mode yet
+      # - name: windows-msix
+      #   package:
+      #     platform: windows
+      #     target: msix
+      #     build_args:
+      #       profile: true
+      - name: windows-zip
+        package:
+          platform: windows
+          target: zip
+          build_args:
+            profile: true
+  - name: release
     jobs:
-      - name: release-prod-linux-x64
-        package:
-          platform: linux
-          target: deb
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-linux-arm64
-        package:
-          platform: linux
-          target: deb
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-linux-x64-appimage
+      - name: linux-appimage
         package:
           platform: linux
           target: appimage
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-linux-arm64-appimage
+      - name: linux-deb
         package:
           platform: linux
-          target: appimage
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-windows-x64
+          target: deb
+      - name: linux-zip
         package:
-          platform: windows
-          target: exe
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-windows-arm64
-        package:
-          platform: windows
-          target: exe
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-macos-x64
+          platform: linux
+          target: zip
+      - name: macos-dmg
         package:
           platform: macos
           target: dmg
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
-      - name: release-prod-macos-arm64
+      - name: macos-pkg
         package:
           platform: macos
-          target: dmg
-          build_args:
-            target: lib/main.dart
-            build-number: 1
-            build-name: 1.0.0
+          target: pkg
+      - name: macos-zip
+        package:
+          platform: macos
+          target: zip
+      - name: windows-exe
+        package:
+          platform: windows
+          target: exe
+      - name: windows-msix
+        package:
+          platform: windows
+          target: msix
+      - name: windows-zip
+        package:
+          platform: windows
+          target: zip
