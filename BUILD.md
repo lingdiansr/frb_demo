@@ -11,11 +11,15 @@
 
 ### 2. Release工作流 (.github/workflows/release.yml)
 - **触发条件**: 推送v*标签或手动触发
-- **功能**: 构建各平台的发布版本
+- **功能**: 构建各平台的安装包
 - **输出**: 
-  - Windows: frb-demo-windows-x64.zip
-  - Linux: frb-demo-linux-x64.tar.gz
-  - macOS: frb-demo-macos-x64.tar.gz 和 frb-demo-macos-arm64.tar.gz
+  - **Windows**: `frb-demo-windows-x64-setup.exe` (Inno Setup安装程序)
+  - **Linux**: 
+    - `frb-demo-linux-x86_64.AppImage` (AppImage格式)
+    - `frb-demo-linux-amd64.deb` (DEB包格式)
+  - **macOS**: 
+    - `frb-demo-macos-x64.dmg` (Intel芯片DMG)
+    - `frb-demo-macos-arm64.dmg` (Apple Silicon DMG)
 
 ## 使用方法
 
