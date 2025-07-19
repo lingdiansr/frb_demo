@@ -1,12 +1,17 @@
-display_name: Hello World
+app_id: com.example.frb_demo
+display_name: frb_demo
+version: 1.0.0
+maintainer: frb_demo team
 
 icon: assets/icon.png
 
 keywords:
-  - hello
-  - world
+  - frb
+  - demo
+  - rust
+  - flutter
 
-generic_name: Cool Application
+generic_name: Flutter Rust Bridge Demo Application
 
 # supported mime types that can be opened using this application
 # supported_mime_type:
