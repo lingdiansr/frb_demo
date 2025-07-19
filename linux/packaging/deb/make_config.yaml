@@ -80,7 +80,7 @@ postuninstall_scripts:
   - echo `Surprised Pickachu face`
 
 # application icon path relative to project url
-icon: assets/logo.png
+icon: assets/icon.png
 
 keywords:
   - Hello

@@ -1,11 +1,11 @@
-display_name: FRB Demo
-package_name: frb-demo
-publisher:
-  name: Your Name
-  url: https://example.com
-identifier: com.example.frb_demo
+# script_template: "custom-inno-setup-script.iss"
+app_id: 15F38A1C-4C4B-4477-99C3-1205BC28C4CC
+publisher_name: lingdianshiren
+publisher_url: https://github.com/lingdianshiren
+display_name: frb_demo
 create_desktop_icon: true
-install_dir_name: FRB Demo
+launch_at_startup: true
+# install_dir_name: "D:\\HELLO-WORLD"
 locales:
-  - en
   - zh
+  - en

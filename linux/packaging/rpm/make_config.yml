@@ -1,0 +1,26 @@
+﻿icon: assets/icon.png
+summary: A really cool application
+group: Application/Emulator
+vendor: lingdianshiren
+packager: lingdianshiren
+packagerEmail: ldsrwu@foxmail.com
+license: GPLv3
+url: https://github.com/fastforgedev/fastforge
+
+display_name: frb_demo
+
+keywords:
+  - Hello
+  - World
+  - Test
+  - Application
+
+generic_name: frb_demo
+
+metainfo: linux/packaging/appdata.xml
+
+categories:
+  - Cool
+  - Awesome
+
+startup_notify: true
