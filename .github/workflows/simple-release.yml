@@ -97,67 +97,10 @@ jobs:
       with:
         name: windows-package
         path: build/frb-demo-windows-x64.zip
-
-  build-macos:
-    name: Build macOS
-    runs-on: macos-latest
-    
-    strategy:
-      matrix:
-        arch: [x64, arm64]
-        include:
-          - arch: x64
-            target: x86_64-apple-darwin
-            suffix: x64
-          - arch: arm64
-            target: aarch64-apple-darwin
-            suffix: arm64
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Setup FVM
-      uses: kuhnroyal/flutter-fvm-config-action@v2
-      id: fvm-config
-    
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: ${{ steps.fvm-config.outputs.FLUTTER_VERSION }}
-        channel: ${{ steps.fvm-config.outputs.FLUTTER_CHANNEL }}
-        cache: true
-    
-    - name: Setup Rust
-      uses: dtolnay/rust-toolchain@stable
-      with:
-        targets: ${{ matrix.target }}
-    
-    - name: Cache Rust dependencies
-      uses: Swatinem/rust-cache@v2
-      with:
-        workspaces: rust
-    
-    - name: Install Flutter dependencies
-      run: flutter pub get
-    
-    - name: Build macOS application
-      run: flutter build macos --release
-    
-    - name: Create macOS package
-      run: |
-        cd build/macos/Build/Products/Release
-        tar -czf ../../../../frb-demo-macos-${{ matrix.suffix }}.tar.gz *.app
-    
-    - name: Upload macOS package
-      uses: actions/upload-artifact@v4
-      with:
-        name: macos-${{ matrix.suffix }}-package
-        path: build/frb-demo-macos-${{ matrix.suffix }}.tar.gz
-
+  
   create-release:
     name: Create Release
-    needs: [build-linux, build-windows, build-macos]
+    needs: [build-linux, build-windows]
     runs-on: ubuntu-latest
     
     steps:
@@ -175,19 +118,7 @@ jobs:
       with:
         name: windows-package
         path: ./releases
-    
-    - name: Download macOS x64 package
-      uses: actions/download-artifact@v4
-      with:
-        name: macos-x64-package
-        path: ./releases
-    
-    - name: Download macOS arm64 package
-      uses: actions/download-artifact@v4
-      with:
-        name: macos-arm64-package
-        path: ./releases
-    
+            
     - name: Create Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
