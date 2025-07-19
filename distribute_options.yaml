@@ -1,6 +1,6 @@
 output: dist/
 variables:
-  FLUTTER_ROOT: .fvm/versions/3.32.7
+  # FLUTTER_ROOT: .fvm/versions/3.32.7
   # PGYER_API_KEY: your api key
 releases:
   - name: profile
