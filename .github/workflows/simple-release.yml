@@ -42,19 +42,17 @@ jobs:
     - name: Install Flutter dependencies
       run: flutter pub get
     
+    - name: Set up FastForge
+      run: dart pub global activate fastforge
+
     - name: Build Linux application
-      run: flutter build linux --release
-    
-    - name: Create Linux package
-      run: |
-        cd build/linux/x64/release/bundle
-        tar -czf ../../../../frb-demo-linux-x64.tar.gz *
-    
+      run: fastforge release --name release
+        
     - name: Upload Linux package
       uses: actions/upload-artifact@v4
       with:
         name: linux-package
-        path: build/frb-demo-linux-x64.tar.gz
+        path: dist/*
 
   build-windows:
     name: Build Windows
