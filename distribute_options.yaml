@@ -29,18 +29,6 @@ releases:
           target: zip
           build_args:
             profile: true
-      - name: macos-dmg
-        package:
-          platform: macos
-          target: dmg
-          build_args:
-            profile: true
-      - name: macos-zip
-        package:
-          platform: macos
-          target: zip
-          build_args:
-            profile: true
       - name: windows-exe
         package:
           platform: windows
@@ -73,18 +61,6 @@ releases:
       - name: linux-zip
         package:
           platform: linux
-          target: zip
-      - name: macos-dmg
-        package:
-          platform: macos
-          target: dmg
-      - name: macos-pkg
-        package:
-          platform: macos
-          target: pkg
-      - name: macos-zip
-        package:
-          platform: macos
           target: zip
       - name: windows-exe
         package:
