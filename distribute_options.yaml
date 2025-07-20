@@ -48,16 +48,16 @@ releases:
           target: zip
           build_args:
             profile: true
-  - name: release
+  - name: release-linux
     jobs:
       - name: linux-appimage
         package:
           platform: linux
           target: appimage
-      # - name: linux-pacman
-      #   package:
-      #     platform: linux
-      #     target: pacman
+      - name: linux-pacman
+        package:
+          platform: linux
+          target: pacman
       - name: linux-deb
         package:
           platform: linux
@@ -65,7 +65,9 @@ releases:
       - name: linux-zip
         package:
           platform: linux
-          target: zip
+          target: zip 
+  - name: release-windows
+    jobs:
       - name: windows-exe
         package:
           platform: windows

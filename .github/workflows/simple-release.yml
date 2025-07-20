@@ -37,7 +37,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev libfuse2
+        sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev libfuse2 libarchive-tools
     
     - name: Install Flutter dependencies
       run: flutter pub get
@@ -45,11 +45,10 @@ jobs:
     - name: Set up FastForge
       run: dart pub global activate fastforge
     
-    - name: Download appimagetool
+    - name: Set up Appimagetool
       run: |
         wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
         chmod +x appimagetool
-        # 可选：放到 PATH，方便后面直接调用
         sudo mv appimagetool /usr/local/bin/
 
     - name: Build Rust libraries
@@ -96,18 +95,13 @@ jobs:
       run: flutter pub get
     
     - name: Build Windows application
-      run: flutter build windows --release
-    
-    - name: Create Windows package
-      run: |
-        cd build/windows/x64/runner/Release
-        7z a ../../../../frb-demo-windows-x64.zip *
-    
+      run: fastforge release --name release-windows
+      
     - name: Upload Windows package
       uses: actions/upload-artifact@v4
       with:
         name: windows-package
-        path: build/frb-demo-windows-x64.zip
+        path: dist/*
   
   create-release:
     name: Create Release
@@ -129,7 +123,10 @@ jobs:
       with:
         name: windows-package
         path: ./releases
-            
+    
+    # - name: unzip package
+    #   run: bash
+
     - name: Create Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
