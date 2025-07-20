@@ -4,7 +4,7 @@ display_name: Frb Demo
 
 # package name for debian/apt repository
 # the name should be all lowercase with -+.
-package_name: frb_demo
+package_name: frb-demo
 
 maintainer:
   name: lingdianshiren

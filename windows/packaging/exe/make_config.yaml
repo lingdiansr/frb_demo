@@ -2,7 +2,7 @@
 app_id: 15F38A1C-4C4B-4477-99C3-1205BC28C4CC
 publisher_name: lingdianshiren
 publisher_url: https://github.com/lingdianshiren
-display_name: frb_demo
+display_name: frb-demo
 create_desktop_icon: true
 launch_at_startup: true
 # install_dir_name: "D:\\HELLO-WORLD"
