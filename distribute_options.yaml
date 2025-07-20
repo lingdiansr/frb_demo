@@ -54,14 +54,14 @@ releases:
         package:
           platform: linux
           target: appimage
-      - name: linux-pacman
-        package:
-          platform: linux
-          target: pacman
-      # - name: linux-deb
+      # - name: linux-pacman
       #   package:
       #     platform: linux
-      #     target: deb
+      #     target: pacman
+      - name: linux-deb
+        package:
+          platform: linux
+          target: deb
       - name: linux-zip
         package:
           platform: linux
