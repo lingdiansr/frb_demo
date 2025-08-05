@@ -50,7 +50,13 @@ jobs:
         wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
         chmod +x appimagetool
         sudo mv appimagetool /usr/local/bin/
-
+    
+    -name: Generate bridge code
+      run: |
+        cargo install flutter_rust_bridge_codegen
+        flutter_rust_bridge_codegen
+      working-directory: ./        
+  
     - name: Build Rust libraries
       run: cargo build --release
       working-directory: rust
