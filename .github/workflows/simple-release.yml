@@ -51,11 +51,11 @@ jobs:
         chmod +x appimagetool
         sudo mv appimagetool /usr/local/bin/
     
-    -name: Generate bridge code
+    - name: Generate Bridge code 
       run: |
         cargo install flutter_rust_bridge_codegen
         flutter_rust_bridge_codegen
-      working-directory: ./        
+      working-directory: ./
   
     - name: Build Rust libraries
       run: cargo build --release
