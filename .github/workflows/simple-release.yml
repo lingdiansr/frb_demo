@@ -54,7 +54,7 @@ jobs:
     - name: Generate Bridge code 
       run: |
         cargo install flutter_rust_bridge_codegen
-        flutter_rust_bridge_codegen
+        flutter_rust_bridge_codegen generate
       working-directory: ./
   
     - name: Build Rust libraries
